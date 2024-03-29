@@ -9,6 +9,8 @@ public class Gui implements Runnable  {
 
     }
 
+    public static final JTextArea textDoc = new JTextArea();
+
         private JFrame MyFrame() {
             JFrame frame = new JFrame();        //creates a frame
             frame.setTitle("Open Source ScriptWriter");  //sets title of frame
@@ -67,20 +69,21 @@ public class Gui implements Runnable  {
         }
 
 
-        private JPanel textArea(){
+        public static JPanel textArea(){
             JPanel panel = new JPanel();
             panel.setLayout(new BorderLayout());
             panel.setBorder(BorderFactory.createEmptyBorder());
             panel.setBackground(Color.white);
-            JTextArea textDoc = new JTextArea();
+
             textDoc.setFont(new Font("Courier", Font.PLAIN, 12));
             textDoc.setMargin(new Insets(80,80,80,80));
             JScrollPane scrollPane = new JScrollPane(textDoc, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             panel.add(scrollPane);
 
+
+
             return panel;
         }
-
 
     public void run() {
         MyFrame();

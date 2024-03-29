@@ -6,7 +6,7 @@ import java.io.File;
 
 public class Components {
 
-    private Gui gui;
+    Gui gui;
 
     public Components(Gui gui) {
         this.gui = gui;             //gives you access to everything in Gui class file.
@@ -17,6 +17,17 @@ public class Components {
         ImageIcon newICon = new ImageIcon("src/Images/new.png");
         newFile.setIcon(newICon);
 
+        newFile.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int reply = JOptionPane.showConfirmDialog(null, "Would you like to save your work?", "Save", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    save().doClick();
+                } else if (reply == JOptionPane.NO_OPTION) {
+                    Gui.textDoc.setText("");
+                }
+            }
+        });
+
         return newFile;
     }
 
@@ -26,11 +37,19 @@ public class Components {
         open.setIcon(openIcon);
 
         open.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
+
+                int reply = JOptionPane.showConfirmDialog(null, "Would you like to save your work?", "Save", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    save().doClick();
+                }
+
                 JFileChooser fileChooser = new JFileChooser();
                 if (fileChooser.showOpenDialog(open()) == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
-                    // load from file
+
+
                 }
             }
         });
@@ -45,9 +64,12 @@ public class Components {
 
         save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+
                 JFileChooser fileChooser = new JFileChooser();
                 if (fileChooser.showSaveDialog(save()) == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
+
 
                 }
             }

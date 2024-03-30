@@ -32,7 +32,7 @@ public class Gui implements Runnable  {
 
 
 
-        private JPanel menuPanel() {
+        private JPanel menuPanel()  {
             JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING, 5, 5));
             panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
             panel.setBackground(Color.lightGray);

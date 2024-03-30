@@ -1,7 +1,10 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 public class Components {
@@ -31,7 +34,7 @@ public class Components {
         return newFile;
     }
 
-    public static JButton open() {
+    public static JButton open()  {
         JButton open = new JButton("Open");
         ImageIcon openIcon = new ImageIcon("src/Images/open.png");
         open.setIcon(openIcon);
@@ -49,9 +52,19 @@ public class Components {
                 if (fileChooser.showOpenDialog(open()) == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
 
+                    try {
+                        BufferedReader reader = new BufferedReader(new FileReader(file));
+                        String line = reader.readLine();
+                        while (line != null) {
+                            Gui.textDoc.append(line + "\n");
+                            line = reader.readLine();
+                        }
+                        reader.close();
+                    } catch (IOException ignored) {
 
-                }
-            }
+                    }
+                }}
+
         });
         return open;
     }

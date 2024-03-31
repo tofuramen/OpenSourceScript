@@ -10,9 +10,10 @@ public class Gui implements Runnable  {
     }
 
     public static final JTextArea textDoc = new JTextArea();
+    public static JFrame frame;
 
         private JFrame MyFrame() {
-            JFrame frame = new JFrame();        //creates a frame
+            frame = new JFrame();        //creates a frame
             frame.setTitle("Open Source ScriptWriter");  //sets title of frame
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //exit out of application
             frame.setResizable(true); //if set to false it'll make frame not resizable

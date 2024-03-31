@@ -1,10 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.event.WindowEvent;
+import java.io.*;
 
 
 public class Components {
@@ -78,11 +76,23 @@ public class Components {
         save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-
                 JFileChooser fileChooser = new JFileChooser();
                 if (fileChooser.showSaveDialog(save()) == JFileChooser.APPROVE_OPTION) {
                     File file = fileChooser.getSelectedFile();
 
+                    Writer writer = null;
+                    try {
+                        writer = new FileWriter(file);
+                        Gui.textDoc.write(writer);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } finally {
+                        try {
+                            writer.close();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
 
                 }
             }
@@ -95,6 +105,21 @@ public class Components {
         JButton exit = new JButton("Exit");
         ImageIcon exitIcon = new ImageIcon("src/Images/exit.png");
         exit.setIcon(exitIcon);
+
+        exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                int reply = JOptionPane.showConfirmDialog(null, "Would you like to save your work?", "Save", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    save().doClick();
+                    Gui.frame.dispatchEvent(new WindowEvent(Gui.frame, WindowEvent.WINDOW_CLOSING));
+                }
+
+                Gui.frame.dispatchEvent(new WindowEvent(Gui.frame, WindowEvent.WINDOW_CLOSING));
+
+            }
+        });
+
         return exit;
     }
 
@@ -109,6 +134,30 @@ public class Components {
         JButton scene = new JButton("Scene");
         ImageIcon sceneIcon = new ImageIcon("src/Images/scene.png");
         scene.setIcon(sceneIcon);
+
+        scene.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String[] entrances = {"EXT.", "INT."};
+                JScrollPane header = new JScrollPane();
+                JList<String> sceneTypeList = new JList<>(entrances);
+                sceneTypeList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+                sceneTypeList.setLayoutOrientation(JList.VERTICAL);
+                sceneTypeList.setVisibleRowCount(-1);
+                header.setSize(200, 200);
+                header.add(sceneTypeList);
+                Gui.textArea().add(header);
+
+
+                if (sceneTypeList.getSelectedIndex() == 0) {
+                    Gui.textDoc.append("EXT.");
+
+                } else if (sceneTypeList.getSelectedIndex() == 1) {
+                    Gui.textDoc.append("INT.");
+                }
+
+            }
+        });
+
         return scene;
     }
 
@@ -147,8 +196,5 @@ public class Components {
         transition.setIcon(transIcon);
         return transition;
     }
-
-
-
 
 }

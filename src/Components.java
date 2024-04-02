@@ -123,12 +123,6 @@ public class Components {
         return exit;
     }
 
-    public static JButton export() {
-        JButton export = new JButton("Export");
-        ImageIcon exportIcon = new ImageIcon("src/Images/pdf.png");
-        export.setIcon(exportIcon);
-        return export;
-    }
 
     public static JButton scene() {
         JButton scene = new JButton("Scene");
@@ -137,26 +131,29 @@ public class Components {
 
         scene.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String[] entrances = {"EXT.", "INT."};
-                JScrollPane header = new JScrollPane();
-                JList<String> sceneTypeList = new JList<>(entrances);
-                sceneTypeList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-                sceneTypeList.setLayoutOrientation(JList.VERTICAL);
-                sceneTypeList.setVisibleRowCount(-1);
-                header.setSize(200, 200);
-                header.add(sceneTypeList);
-                Gui.textArea().add(header);
 
+                JFrame sceneHeader = new JFrame();
+                String[] options = new String[3];
+                options[0] = "EXT.";
+                options[1] = "INT";
+                options[2] = "cancel";
 
-                if (sceneTypeList.getSelectedIndex() == 0) {
-                    Gui.textDoc.append("EXT.");
-
-                } else if (sceneTypeList.getSelectedIndex() == 1) {
-                    Gui.textDoc.append("INT.");
+                var yesNo = JOptionPane.showOptionDialog(sceneHeader.getContentPane(), "Message!", "Title", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+                if (yesNo == 0) {
+                    Gui.textDoc.append("EXT. ");
                 }
+                if (yesNo == 1) {
+                    Gui.textDoc.append("INT. ");
+                }
+                if (yesNo == 2) {
+                    JOptionPane.showMessageDialog(null, "You chose to cancel!");
+                }
+
 
             }
         });
+
+
 
         return scene;
     }
@@ -196,5 +193,15 @@ public class Components {
         transition.setIcon(transIcon);
         return transition;
     }
+
+    public static JButton export() {
+        JButton export = new JButton("Export");
+        ImageIcon exportIcon = new ImageIcon("src/Images/pdf.png");
+        export.setIcon(exportIcon);
+        return export;
+    }
+
+
+
 
 }

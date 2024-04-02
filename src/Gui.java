@@ -10,7 +10,7 @@ public class Gui implements Runnable  {
     }
 
     public static final JTextArea textDoc = new JTextArea();
-    public static JFrame frame;
+    protected static JFrame frame;
 
         private JFrame MyFrame() {
             frame = new JFrame();        //creates a frame
@@ -26,8 +26,6 @@ public class Gui implements Runnable  {
             frame.add(textArea(), BorderLayout.CENTER);
             ImageIcon logo = new ImageIcon("src/Images/camera.png");
             frame.setIconImage(logo.getImage());
-            //ImageIcon image = new ImageIcon("bayern.jpeg"); //create an image icon
-            //frame.setIconImage(image.getImage()); //change icon of frame
             return frame;
         }
 
@@ -42,13 +40,13 @@ public class Gui implements Runnable  {
             panel.add(Components.open());
             panel.add(Components.save());
             panel.add(Components.exit());
-            panel.add(Components.export());
             panel.add(Components.scene());
             panel.add(Components.action());
             panel.add(Components.character());
             panel.add(Components.paren());
             panel.add(Components.dialogue());
             panel.add(Components.transition());
+            panel.add(Components.export());
 
             return panel;
         }
@@ -80,7 +78,6 @@ public class Gui implements Runnable  {
             textDoc.setMargin(new Insets(80,80,80,80));
             JScrollPane scrollPane = new JScrollPane(textDoc, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             panel.add(scrollPane);
-
 
 
             return panel;

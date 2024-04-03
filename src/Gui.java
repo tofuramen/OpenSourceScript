@@ -29,8 +29,6 @@ public class Gui implements Runnable  {
             return frame;
         }
 
-
-
         private JPanel menuPanel()  {
             JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING, 5, 5));
             panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -66,7 +64,6 @@ public class Gui implements Runnable  {
 
             return panel;
         }
-
 
         public static JPanel textArea(){
             JPanel panel = new JPanel();

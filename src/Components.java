@@ -67,7 +67,6 @@ public class Components {
         return open;
     }
 
-
     public static JButton save() {
         JButton save = new JButton("Save");
         ImageIcon saveIcon = new ImageIcon("src/Images/save.png");
@@ -123,7 +122,6 @@ public class Components {
         return exit;
     }
 
-
     public static JButton scene() {
         JButton scene = new JButton("Scene");
         ImageIcon sceneIcon = new ImageIcon("src/Images/scene.png");
@@ -149,11 +147,8 @@ public class Components {
                     JOptionPane.showMessageDialog(null, "You chose to cancel!");
                 }
 
-
             }
         });
-
-
 
         return scene;
     }
@@ -162,6 +157,14 @@ public class Components {
         JButton action = new JButton("Action");
         ImageIcon actionIcon = new ImageIcon("src/Images/action.png");
         action.setIcon(actionIcon);
+
+        action.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Gui.textDoc.append("\n" + "\n");
+                Gui.textDoc.append("Action");
+            }
+        });
+
         return action;
     }
 
@@ -170,6 +173,13 @@ public class Components {
         ImageIcon charIcon = new ImageIcon("src/Images/character.png");
         character.setIcon(charIcon);
 
+        character.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Gui.textDoc.append("\n" + "\n");
+                Gui.textDoc.append("                                       character");
+            }
+        });
+
         return character;
     }
 
@@ -177,6 +187,14 @@ public class Components {
         JButton parentheses = new JButton("Paren");
         ImageIcon parenIcon = new ImageIcon("src/Images/paren.png");
         parentheses.setIcon(parenIcon);
+
+        parentheses.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Gui.textDoc.append("\n");
+                Gui.textDoc.append("                                         ( )");
+            }
+        });
+
         return parentheses;
     }
 
@@ -184,6 +202,14 @@ public class Components {
         JButton dialogue = new JButton("Dialogue");
         ImageIcon dialogueIcon = new ImageIcon("src/Images/dialogue.png");
         dialogue.setIcon(dialogueIcon);
+
+        dialogue.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Gui.textDoc.append("\n");
+                Gui.textDoc.append("                 dialogue starts here");
+            }
+        });
+
         return dialogue;
     }
 
@@ -191,6 +217,14 @@ public class Components {
         JButton transition = new JButton("Transition");
         ImageIcon transIcon = new ImageIcon("src.Images/transition.png");
         transition.setIcon(transIcon);
+
+        transition.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Gui.textDoc.append("\n");
+                Gui.textDoc.append("                                                                    cut to: ");
+            }
+        });
+
         return transition;
     }
 
@@ -200,8 +234,5 @@ public class Components {
         export.setIcon(exportIcon);
         return export;
     }
-
-
-
 
 }
